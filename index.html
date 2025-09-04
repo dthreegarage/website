@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3 Garage - Premium Automotive Services | Faridabad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(26,26,26,0.8), rgba(45,45,45,0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b35, #f7931e, #ffcc02);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,107,53,0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .price-range {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+        }
+
+        .price-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .price-item .car-type {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .price-item .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #2d2d2d, #404040);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #404040, #2d2d2d);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ff6b35;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b35;
+            box-shadow: 0 0 10px rgba(255,107,53,0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(255,107,53,0.5);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(255,107,53,0.8);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">D3 GARAGE</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#features">Why Choose Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>D3 GARAGE</h1>
+                    <p>Premium Automotive Services | Detailing • Servicing • Denting & Painting • Insurance</p>
+                    <p>Service Centre Quality. Genuine Care. Affordable Prices.</p>
+                    <a href="#contact" class="cta-button">Book Your Service</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Professional automotive care with modern tools and trained technicians</p>
+                
+                <div class="services-grid">
+                    <!-- Car Washing -->
+                    <div class="service-card">
+                        <h3>Car Washing</h3>
+                        <p>Complete interior and exterior cleaning with foam wash, vacuuming, glass cleaning, and tire polishing. Duration: 40 mins to 1.20 hrs</p>
+                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                            <li>Interior vacuuming</li>
+                            <li>Foam wash & underbody cleaning</li>
+                            <li>Complete interior polishing</li>
+                            <li>Tyre & plastic part polishing</li>
+                        </ul>
+                        <div class="price-range">
+                            <div class="price-item">
+                                <div class="car-type">Small Car</div>
+                                <div class="price">₹400</div>
+                            </div>
+                            <div class="price-item">
+                                <div class="car-type">Mid-Size Car</div>
+                                <div class="price">₹500</div>
+                            </div>
+                            <div class="price-item">
+                                <div class="car-type">Big Car</div>
+                                <div class="price">₹600</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Washing + 3M Wax -->
+                    <div class="service-card">
+                        <h3>Car Washing + 3M Wax</h3>
+                        <p>Premium wash with 3M cream wax coating for enhanced shine and protection. Duration: 1 to 1.30 hrs</p>
+                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                            <li>All car washing features</li>
+                            <li>Complete exterior body wax coating</li>
+                            <li>3M Cream Wax application</li>
+                            <li>Enhanced shine and protection</li>
+                        </ul>
+                        <div class="price-range">
+                            <div class="price-item">
+                                <div class="car-type">Small Car</div>
+                                <div class="price">₹800</div>
+                            </div>
+                            <div class="price-item">
+                                <div class="car-type">Mid-Size Car</div>
+                                <div class="price">₹1000</div>
+                            </div>
+                            <div class="price-item">
+                                <div class="car-type">Big Car</div>
+                                <div class="price">₹1200</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dry Cleaning -->
+                    <div class="service-card">
+                        <h3>Interior Dry Cleaning</h3>
+                        <p>Deep interior cleaning with seat removal, carpet cleaning, and complete sanitization. Duration: 4 to 5 hrs</p>
+                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                            <li>Seat removal & deep cleaning</li>
+                            <li>Chemical wash for stains & odors</li>
+                            <li>Complete interior sanitization</li>
+                            <li>Bonus exterior car wash</li>
+                        </ul>
+                        <div class="price-range">
+                            <div class="price-item">
+                                <div class="car-type">Small Car</div>
+                                <div class="price">₹1500</div>
+                            </div>
+                            <div class="price-item">
+                                <div class="car-type">Mid-Size Car</div>
+                                <div class="price">₹2000</div>
+                            </div>
+                            <div class="price-item">
+                                <div class="car-type">Big Car</div>
+                                <div class="price">₹2500</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scratch Removal + Wax -->
+                    <div class="service-card">
+                        <h3>Scratch Removal + Wax Coating</h3>
+                        <p>Professional scratch removal with 3M compounds and protective wax coating. 6-month shine warranty coverage</p>
+                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                            <li>3M clay wash & compounds</li>
+                            <li>Professional scratch removal</li>
+                            <li>3M wax coating application</li>
+                            <li>6-month warranty coverage</li>
+                        </ul>
+                        <div class="price-range">
+                            <div class="price-item">
+                                <div class="car-type">Small Car</div>
+                                <div class="price">₹2000</div>
+                            </div>
+                            <div class="price-item">
+                                <div class="car-type">Mid-Size Car</div>
+                                <div class="price">₹2500</div>
+                            </div>
+                            <div class="price-item">
+                                <div class="car-type">Big Car</div>
+                                <div class="price">₹3000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Anti-Rust Coating -->
+                    <div class="service-card">
+                        <h3>Anti-Rust Underbody Coating</h3>
+                        <p>Complete underbody protection with 3M anti-rust treatment. 2-3 years coating life with 1-year warranty</p>
+                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                            <li>Underbody cleaning & preparation</li>
+                            <li>Rust inspection & treatment</li>
+                            <li>3M anti-rust primer & coating</li>
+                            <li>1-year warranty coverage</li>
+                        </ul>
+                        <div class="price-range">
+                            <div class="price-item">
+                                <div class="car-type">All Cars</div>
+                                <div class="price">₹2000-₹4000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Servicing -->
+                    <div class="service-card">
+                        <h3>Complete Car Servicing</h3>
+                        <p>Service centre quality servicing with genuine products. Fast turnaround in just 2-3 hours with free car wash</p>
+                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                            <li>Engine oil & filter replacement</li>
+                            <li>Spark plug & brake system check</li>
+                            <li>AC cooling & filter service</li>
+                            <li>FREE interior + exterior wash</li>
+                        </ul>
+                        <div class="price-range">
+                            <div class="price-item">
+                                <div class="car-type">Contact for</div>
+                                <div class="price">Pricing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title" style="color: white;">Why Choose D3 Garage?</h2>
+                <p class="section-subtitle" style="color: #ccc;">Experience the difference with our professional automotive care</p>
+                
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Service Centre Level Quality</h3>
+                        <p>Professional service with modern tools and diagnostic equipment</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚗</div>
+                        <h3>Free Pickup & Drop</h3>
+                        <p>Convenient pickup and drop service within 5 km radius</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">👨‍🔧</div>
+                        <h3>Trained Technicians</h3>
+                        <p>Skilled and experienced technicians for all automotive needs</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <h3>Transparent Pricing</h3>
+                        <p>Clear, upfront pricing with no hidden charges</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast Turnaround</h3>
+                        <p>Quick service completion in 2-3 hours for most services</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Customer First</h3>
+                        <p>Dedicated to customer satisfaction with 10% referral discount</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">Get in touch for premium automotive services</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>D3 Garage, Amolik Chowk<br>Sector 86, Faridabad<br>Haryana 121002</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91 9211957576<br>+91 92666 16298</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>dthreegarage@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <div>
+                                <h4>Working Hours</h4>
+                                <p>Monday - Saturday: 9:00 AM - 8:00 PM<br>Sunday: 10:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3 style="margin-bottom: 30px; color: #1a1a1a;">Book Your Service</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service Required</label>
+                                <select id="service" name="service" style="width: 100%; padding: 15px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem;">
+                                    <option>Select a Service</option>
+                                    <option>Car Washing</option>
+                                    <option>Car Washing + 3M Wax</option>
+                                    <option>Interior Dry Cleaning</option>
+                                    <option>Scratch Removal + Wax</option>
+                                    <option>Anti-Rust Coating</option>
+                                    <option>Car Servicing</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Additional Message</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Tell us about your car and specific requirements..."></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Book Service Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 D3 Garage. All rights reserved. | Professional Automotive Services in Faridabad</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you soon to confirm your booking.');
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(45,45,45,0.95) 100%)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards and feature items
+        document.querySelectorAll('.service-card, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
