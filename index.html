@@ -14,7 +14,8 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #ffffff;
+            background-color: #000000;
             overflow-x: hidden;
         }
 
@@ -26,66 +27,34 @@
 
         /* Header */
         header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: #000000;
             color: white;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(230, 45, 45, 0.3);
+            border-bottom: 2px solid #e62d2d;
         }
 
         nav {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #ff6b35;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+            color: #e62d2d;
+            text-shadow: 0 0 20px rgba(230, 45, 45, 0.5);
+            letter-spacing: 2px;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(26,26,26,0.8), rgba(45,45,45,0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(30,30,30,0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(230,45,45,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
             height: 100vh;
             display: flex;
             align-items: center;
@@ -104,22 +73,22 @@
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b35, #f7931e, #ffcc02);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #e62d2d;
+            text-shadow: 0 0 30px rgba(230, 45, 45, 0.8);
             animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 2px;
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.9;
+            color: #cccccc;
         }
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            background: linear-gradient(45deg, #e62d2d, #ff4444);
             color: white;
             padding: 15px 40px;
             text-decoration: none;
@@ -127,9 +96,10 @@
             font-weight: bold;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+            box-shadow: 0 10px 30px rgba(230, 45, 45, 0.3);
             position: relative;
             overflow: hidden;
+            border: 2px solid #e62d2d;
         }
 
         .cta-button::before {
@@ -149,20 +119,21 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255,107,53,0.4);
+            box-shadow: 0 15px 40px rgba(230, 45, 45, 0.5);
+            background: linear-gradient(45deg, #ff4444, #e62d2d);
         }
 
         /* Services Section */
         .services {
             padding: 100px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: #000000;
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #1a1a1a;
+            color: #ffffff;
             position: relative;
         }
 
@@ -170,7 +141,7 @@
             content: '';
             width: 100px;
             height: 4px;
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            background: linear-gradient(45deg, #e62d2d, #ff4444);
             position: absolute;
             bottom: -10px;
             left: 50%;
@@ -181,7 +152,7 @@
         .section-subtitle {
             text-align: center;
             font-size: 1.1rem;
-            color: #666;
+            color: #cccccc;
             margin-bottom: 50px;
         }
 
@@ -193,13 +164,14 @@
         }
 
         .service-card {
-            background: white;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            border: 2px solid #333333;
         }
 
         .service-card::before {
@@ -209,23 +181,28 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            background: linear-gradient(45deg, #e62d2d, #ff4444);
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(230, 45, 45, 0.2);
+            border-color: #e62d2d;
         }
 
         .service-card h3 {
             font-size: 1.4rem;
             margin-bottom: 15px;
-            color: #1a1a1a;
+            color: #e62d2d;
         }
 
         .service-card p {
-            color: #666;
+            color: #cccccc;
             margin-bottom: 20px;
+        }
+
+        .service-card ul {
+            color: #cccccc;
         }
 
         .price-range {
@@ -233,8 +210,9 @@
             justify-content: space-between;
             margin-top: 20px;
             padding: 15px;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
             border-radius: 10px;
+            border: 1px solid #333333;
         }
 
         .price-item {
@@ -244,21 +222,20 @@
 
         .price-item .car-type {
             font-size: 0.9rem;
-            color: #666;
+            color: #cccccc;
             margin-bottom: 5px;
         }
 
         .price-item .price {
             font-size: 1.2rem;
             font-weight: bold;
-            color: #ff6b35;
+            color: #e62d2d;
         }
 
         /* Features Section */
         .features {
             padding: 100px 0;
-            background: #1a1a1a;
-            color: white;
+            background: linear-gradient(135deg, #1a1a1a, #000000);
         }
 
         .features-grid {
@@ -271,38 +248,46 @@
         .feature-item {
             text-align: center;
             padding: 30px;
-            background: linear-gradient(135deg, #2d2d2d, #404040);
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
             border-radius: 15px;
             transition: all 0.3s ease;
+            border: 2px solid #333333;
         }
 
         .feature-item:hover {
             transform: translateY(-5px);
-            background: linear-gradient(135deg, #404040, #2d2d2d);
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-color: #e62d2d;
+            box-shadow: 0 10px 30px rgba(230, 45, 45, 0.2);
         }
 
         .feature-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            background: linear-gradient(45deg, #e62d2d, #ff4444);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
             font-size: 1.5rem;
+            box-shadow: 0 0 20px rgba(230, 45, 45, 0.3);
         }
 
         .feature-item h3 {
             font-size: 1.2rem;
             margin-bottom: 15px;
-            color: #ff6b35;
+            color: #e62d2d;
+        }
+
+        .feature-item p {
+            color: #cccccc;
         }
 
         /* Contact Section */
         .contact {
             padding: 100px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: #000000;
         }
 
         .contact-grid {
@@ -313,10 +298,11 @@
         }
 
         .contact-info {
-            background: white;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid #333333;
         }
 
         .contact-item {
@@ -324,21 +310,37 @@
             align-items: center;
             margin-bottom: 25px;
             padding: 15px;
-            background: #f8f9fa;
+            background: #2d2d2d;
             border-radius: 10px;
             transition: all 0.3s ease;
+            border: 1px solid #333333;
         }
 
         .contact-item:hover {
-            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            background: linear-gradient(135deg, #e62d2d, #ff4444);
             color: white;
             transform: translateX(10px);
+            border-color: #e62d2d;
+        }
+
+        .contact-item h4 {
+            color: #e62d2d;
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            color: #cccccc;
+        }
+
+        .contact-item:hover h4,
+        .contact-item:hover p {
+            color: white;
         }
 
         .contact-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            background: linear-gradient(45deg, #e62d2d, #ff4444);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -349,10 +351,16 @@
         }
 
         .contact-form {
-            background: white;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid #333333;
+        }
+
+        .contact-form h3 {
+            margin-bottom: 30px;
+            color: #e62d2d;
         }
 
         .form-group {
@@ -363,28 +371,38 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #333;
+            color: #ffffff;
         }
 
         .form-group input,
+        .form-group select,
         .form-group textarea {
             width: 100%;
             padding: 15px;
-            border: 2px solid #e9ecef;
+            border: 2px solid #333333;
             border-radius: 10px;
             font-size: 1rem;
             transition: all 0.3s ease;
+            background: #2d2d2d;
+            color: #ffffff;
         }
 
         .form-group input:focus,
+        .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #ff6b35;
-            box-shadow: 0 0 10px rgba(255,107,53,0.2);
+            border-color: #e62d2d;
+            box-shadow: 0 0 10px rgba(230, 45, 45, 0.3);
+            background: #1a1a1a;
+        }
+
+        .form-group option {
+            background: #2d2d2d;
+            color: #ffffff;
         }
 
         .submit-btn {
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            background: linear-gradient(45deg, #e62d2d, #ff4444);
             color: white;
             padding: 15px 40px;
             border: none;
@@ -394,19 +412,26 @@
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
+            border: 2px solid #e62d2d;
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+            box-shadow: 0 10px 30px rgba(230, 45, 45, 0.4);
+            background: linear-gradient(45deg, #ff4444, #e62d2d);
         }
 
         /* Footer */
         footer {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a, #000000);
             color: white;
             text-align: center;
             padding: 30px 0;
+            border-top: 2px solid #e62d2d;
+        }
+
+        footer p {
+            color: #cccccc;
         }
 
         /* Animations */
@@ -423,17 +448,17 @@
 
         @keyframes glow {
             from {
-                text-shadow: 0 0 20px rgba(255,107,53,0.5);
+                text-shadow: 0 0 20px rgba(230, 45, 45, 0.5);
             }
             to {
-                text-shadow: 0 0 30px rgba(255,107,53,0.8);
+                text-shadow: 0 0 30px rgba(230, 45, 45, 0.8);
             }
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .logo {
+                font-size: 2rem;
             }
             
             .hero h1 {
@@ -457,18 +482,30 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e62d2d;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff4444;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
             <div class="logo">D3 GARAGE</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#features">Why Choose Us</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
         </nav>
     </header>
 
@@ -494,7 +531,7 @@
                     <div class="service-card">
                         <h3>Car Washing</h3>
                         <p>Complete interior and exterior cleaning with foam wash, vacuuming, glass cleaning, and tire polishing. Duration: 40 mins to 1.20 hrs</p>
-                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                        <ul style="color: #cccccc; margin: 15px 0; padding-left: 20px;">
                             <li>Interior vacuuming</li>
                             <li>Foam wash & underbody cleaning</li>
                             <li>Complete interior polishing</li>
@@ -520,7 +557,7 @@
                     <div class="service-card">
                         <h3>Car Washing + 3M Wax</h3>
                         <p>Premium wash with 3M cream wax coating for enhanced shine and protection. Duration: 1 to 1.30 hrs</p>
-                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                        <ul style="color: #cccccc; margin: 15px 0; padding-left: 20px;">
                             <li>All car washing features</li>
                             <li>Complete exterior body wax coating</li>
                             <li>3M Cream Wax application</li>
@@ -546,7 +583,7 @@
                     <div class="service-card">
                         <h3>Interior Dry Cleaning</h3>
                         <p>Deep interior cleaning with seat removal, carpet cleaning, and complete sanitization. Duration: 4 to 5 hrs</p>
-                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                        <ul style="color: #cccccc; margin: 15px 0; padding-left: 20px;">
                             <li>Seat removal & deep cleaning</li>
                             <li>Chemical wash for stains & odors</li>
                             <li>Complete interior sanitization</li>
@@ -572,7 +609,7 @@
                     <div class="service-card">
                         <h3>Scratch Removal + Wax Coating</h3>
                         <p>Professional scratch removal with 3M compounds and protective wax coating. 6-month shine warranty coverage</p>
-                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                        <ul style="color: #cccccc; margin: 15px 0; padding-left: 20px;">
                             <li>3M clay wash & compounds</li>
                             <li>Professional scratch removal</li>
                             <li>3M wax coating application</li>
@@ -598,7 +635,7 @@
                     <div class="service-card">
                         <h3>Anti-Rust Underbody Coating</h3>
                         <p>Complete underbody protection with 3M anti-rust treatment. 2-3 years coating life with 1-year warranty</p>
-                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                        <ul style="color: #cccccc; margin: 15px 0; padding-left: 20px;">
                             <li>Underbody cleaning & preparation</li>
                             <li>Rust inspection & treatment</li>
                             <li>3M anti-rust primer & coating</li>
@@ -616,7 +653,7 @@
                     <div class="service-card">
                         <h3>Complete Car Servicing</h3>
                         <p>Service centre quality servicing with genuine products. Fast turnaround in just 2-3 hours with free car wash</p>
-                        <ul style="color: #666; margin: 15px 0; padding-left: 20px;">
+                        <ul style="color: #cccccc; margin: 15px 0; padding-left: 20px;">
                             <li>Engine oil & filter replacement</li>
                             <li>Spark plug & brake system check</li>
                             <li>AC cooling & filter service</li>
@@ -711,7 +748,7 @@
                     </div>
 
                     <div class="contact-form">
-                        <h3 style="margin-bottom: 30px; color: #1a1a1a;">Book Your Service</h3>
+                        <h3>Book Your Service</h3>
                         <form>
                             <div class="form-group">
                                 <label for="name">Full Name</label>
@@ -723,7 +760,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="service">Service Required</label>
-                                <select id="service" name="service" style="width: 100%; padding: 15px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem;">
+                                <select id="service" name="service">
                                     <option>Select a Service</option>
                                     <option>Car Washing</option>
                                     <option>Car Washing + 3M Wax</option>
@@ -777,36 +814,7 @@
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(45,45,45,0.95) 100%)';
+                header.style.background = 'rgba(0,0,0,0.95)';
                 header.style.backdropFilter = 'blur(10px)';
             } else {
-                header.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)';
-                header.style.backdropFilter = 'none';
-            }
-        });
-
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe service cards and feature items
-        document.querySelectorAll('.service-card, .feature-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
+                header.style.background = '#000000
